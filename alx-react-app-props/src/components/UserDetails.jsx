@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import UserContext from '../context/UserContext';
 
 function UserDetails() {
-  const userData = useContext(UserContext);
+  const { user } = useContext(UserContext);
 
   return (
     <div style={{ 
@@ -15,101 +15,47 @@ function UserDetails() {
       <h3 style={{ 
         color: '#2c3e50',
         marginBottom: '20px',
-        fontSize: '1.5rem'
+        borderBottom: '2px solid #3498db',
+        paddingBottom: '10px'
       }}>
-        User Details (Using Context API)
+        User Details from Context
       </h3>
       
-      <div style={{ 
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))',
-        gap: '15px'
-      }}>
-        <div style={{ 
-          backgroundColor: '#ecf0f1',
-          padding: '15px',
-          borderRadius: '5px'
-        }}>
-          <p style={{ 
-            color: '#7f8c8d',
-            marginBottom: '5px',
-            fontSize: '0.9rem'
-          }}>Name:</p>
-          <p style={{ 
-            color: '#2c3e50',
-            fontWeight: 'bold',
-            fontSize: '1.1rem'
-          }}>{userData.name}</p>
+      <div style={{ display: 'grid', gap: '15px' }}>
+        <div>
+          <strong style={{ color: '#7f8c8d' }}>Name:</strong>
+          <p style={{ color: '#2c3e50', fontSize: '18px', margin: '5px 0' }}>
+            {user.name}
+          </p>
         </div>
-
-        <div style={{ 
-          backgroundColor: '#ecf0f1',
-          padding: '15px',
-          borderRadius: '5px'
-        }}>
-          <p style={{ 
-            color: '#7f8c8d',
-            marginBottom: '5px',
-            fontSize: '0.9rem'
-          }}>Email:</p>
-          <p style={{ 
-            color: '#2c3e50',
-            fontWeight: 'bold',
-            fontSize: '1.1rem'
-          }}>{userData.email}</p>
+        
+        <div>
+          <strong style={{ color: '#7f8c8d' }}>Email:</strong>
+          <p style={{ color: '#2c3e50', fontSize: '18px', margin: '5px 0' }}>
+            {user.email}
+          </p>
         </div>
-
-        <div style={{ 
-          backgroundColor: '#ecf0f1',
-          padding: '15px',
-          borderRadius: '5px'
-        }}>
-          <p style={{ 
-            color: '#7f8c8d',
-            marginBottom: '5px',
-            fontSize: '0.9rem'
-          }}>Age:</p>
-          <p style={{ 
-            color: '#2c3e50',
-            fontWeight: 'bold',
-            fontSize: '1.1rem'
-          }}>{userData.age}</p>
+        
+        <div>
+          <strong style={{ color: '#7f8c8d' }}>Age:</strong>
+          <p style={{ color: '#2c3e50', fontSize: '18px', margin: '5px 0' }}>
+            {user.age}
+          </p>
         </div>
-
-        <div style={{ 
-          backgroundColor: '#ecf0f1',
-          padding: '15px',
-          borderRadius: '5px'
-        }}>
-          <p style={{ 
-            color: '#7f8c8d',
-            marginBottom: '5px',
-            fontSize: '0.9rem'
-          }}>Location:</p>
-          <p style={{ 
-            color: '#2c3e50',
-            fontWeight: 'bold',
-            fontSize: '1.1rem'
-          }}>{userData.location}</p>
+        
+        <div>
+          <strong style={{ color: '#7f8c8d' }}>Location:</strong>
+          <p style={{ color: '#2c3e50', fontSize: '18px', margin: '5px 0' }}>
+            {user.location}
+          </p>
         </div>
-      </div>
-
-      <div style={{ 
-        marginTop: '20px',
-        padding: '15px',
-        backgroundColor: '#e8f4fc',
-        borderRadius: '5px',
-        borderLeft: '4px solid #3498db'
-      }}>
-        <p style={{ 
-          color: '#2c3e50',
-          fontWeight: 'bold',
-          marginBottom: '5px'
-        }}>Role:</p>
-        <p style={{ 
-          color: '#16a085',
-          fontSize: '1.1rem'
-        }}>{userData.role}</p>
+        
+        <div>
+          <strong style={{ color: '#7f8c8d' }}>Role:</strong>
+          <p style={{ color: '#16a085', fontSize: '18px', margin: '5px 0' }}>
+            {user.role}
+          </p>
+        </div>
       </div>
     </div>
   );
