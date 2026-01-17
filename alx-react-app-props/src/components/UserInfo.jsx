@@ -9,7 +9,9 @@ function UserInfo() {
       backgroundColor: '#f8f9fa',
       borderRadius: '8px'
     }}>
-      <h2 style={{ color: '#34495e' }}>User Information Section</h2>
+      <h2 style={{ color: '#34495e', marginBottom: '15px' }}>
+        User Information (Using Context API)
+      </h2>
       <UserDetails />
     </div>
   );
