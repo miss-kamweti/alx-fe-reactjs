@@ -3,7 +3,7 @@ import React from 'react';
 function MainContent() {
   return (
     <main style={{ 
-      padding: '30px',
+      padding: '40px',
       backgroundColor: '#ecf0f1',
       minHeight: '400px'
     }}>
@@ -15,16 +15,26 @@ function MainContent() {
           color: '#2c3e50',
           textAlign: 'center',
           marginBottom: '30px',
-          fontSize: '2rem'
-        }}>Main Content Area</h2>
-        <p style={{ 
-          fontSize: '1.1rem',
-          lineHeight: '1.8',
-          color: '#34495e',
-          textAlign: 'center'
+          fontSize: '28px'
         }}>
-          This is the main content area with enhanced inline styling.
-        </p>
+          Welcome to Our Application
+        </h2>
+        <div style={{ 
+          backgroundColor: 'white',
+          padding: '30px',
+          borderRadius: '10px',
+          boxShadow: '0 2px 4px rgba(0,0,0,0.1)'
+        }}>
+          <p style={{ 
+            fontSize: '18px',
+            lineHeight: '1.6',
+            color: '#34495e',
+            textAlign: 'center'
+          }}>
+            This is the main content area with enhanced inline styling.
+            Explore our features and learn more about what we offer.
+          </p>
+        </div>
       </div>
     </main>
   );
