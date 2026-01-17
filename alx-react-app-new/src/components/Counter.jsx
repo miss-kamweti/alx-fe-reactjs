@@ -19,9 +19,9 @@ function Counter() {
       }}>Counter Application</h2>
       
       <p style={{ 
-        fontSize: '3rem',
+        fontSize: '48px',
         fontWeight: 'bold',
-        color: count > 0 ? 'green' : count < 0 ? 'red' : 'blue',
+        color: count > 0 ? '#27ae60' : count < 0 ? '#e74c3c' : '#3498db',
         margin: '30px 0'
       }}>
         {count}
@@ -40,7 +40,7 @@ function Counter() {
             border: 'none',
             padding: '12px 24px',
             borderRadius: '5px',
-            fontSize: '1rem',
+            fontSize: '16px',
             cursor: 'pointer'
           }}
         >
@@ -55,7 +55,7 @@ function Counter() {
             border: 'none',
             padding: '12px 24px',
             borderRadius: '5px',
-            fontSize: '1rem',
+            fontSize: '16px',
             cursor: 'pointer'
           }}
         >
@@ -70,7 +70,7 @@ function Counter() {
             border: 'none',
             padding: '12px 24px',
             borderRadius: '5px',
-            fontSize: '1rem',
+            fontSize: '16px',
             cursor: 'pointer'
           }}
         >
