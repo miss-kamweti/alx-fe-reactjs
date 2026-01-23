@@ -1,0 +1,27 @@
+.search-bar {
+  position: relative;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.search-bar::before {
+  content: "🔍";
+  position: absolute;
+  left: 1rem;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #667eea;
+  font-size: 1.2rem;
+}
+
+.search-input {
+  padding-left: 3rem !important;
+  padding-right: 3rem;
+  font-size: 1.1rem;
+  border: 2px solid #667eea !important;
+  background: rgba(102, 126, 234, 0.05);
+}
+
+.search-input::placeholder {
+  color: #999;
+}

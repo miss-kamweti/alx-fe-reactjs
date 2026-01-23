@@ -1,0 +1,18 @@
+.recipe-list {
+  padding: 1rem 0;
+}
+
+.recipe-list h2 {
+  color: #333;
+  margin-bottom: 1.5rem;
+  font-size: 1.8rem;
+}
+
+.recipe-list > p {
+  text-align: center;
+  color: #666;
+  padding: 3rem;
+  background: #f8f9fa;
+  border-radius: 10px;
+  border: 2px dashed #dee2e6;
+}
