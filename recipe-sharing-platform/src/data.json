@@ -1,0 +1,129 @@
+[
+  {
+    "id": 1,
+    "title": "Spaghetti Carbonara",
+    "summary": "A classic Italian pasta dish with eggs, cheese, bacon, and black pepper.",
+    "image": "https://images.pexels.com/photos/1438672/pexels-photo-1438672.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+    "ingredients": [
+      "200g spaghetti",
+      "100g pancetta",
+      "2 large eggs",
+      "50g pecorino cheese",
+      "50g parmesan",
+      "Black pepper",
+      "Salt"
+    ],
+    "instructions": [
+      "Boil pasta in salted water until al dente",
+      "Fry pancetta until crispy",
+      "Mix eggs and grated cheese in a bowl",
+      "Drain pasta and reserve some pasta water",
+      "Combine hot pasta with egg mixture quickly",
+      "Add pancetta and lots of black pepper",
+      "Add pasta water if needed for creaminess"
+    ]
+  },
+  {
+    "id": 2,
+    "title": "Chicken Tikka Masala",
+    "summary": "Chunks of grilled chicken (tikka) cooked in a smooth buttery & creamy tomato based gravy.",
+    "image": "https://images.pexels.com/photos/2474661/pexels-photo-2474661.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+    "ingredients": [
+      "500g chicken breast",
+      "1 cup yogurt",
+      "2 tbsp tikka masala spice",
+      "1 onion",
+      "2 tomatoes",
+      "1 cup cream",
+      "Butter",
+      "Garlic",
+      "Ginger"
+    ],
+    "instructions": [
+      "Marinate chicken in yogurt and spices for 1 hour",
+      "Grill chicken until charred, set aside",
+      "Sauté onions, garlic, ginger until soft",
+      "Add tomatoes and cook until mushy",
+      "Blend sauce until smooth, return to pan",
+      "Add cream and butter, simmer",
+      "Add chicken and cook for 10 minutes",
+      "Serve with rice or naan"
+    ]
+  },
+  {
+    "id": 3,
+    "title": "Classic Beef Burger",
+    "summary": "Juicy beef patty with fresh lettuce, tomato, and special sauce in a brioche bun.",
+    "image": "https://images.pexels.com/photos/1639557/pexels-photo-1639557.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+    "ingredients": [
+      "500g ground beef",
+      "4 brioche buns",
+      "Lettuce leaves",
+      "2 tomatoes",
+      "1 onion",
+      "Cheddar cheese",
+      "Salt and pepper",
+      "Burger sauce"
+    ],
+    "instructions": [
+      "Form beef into 4 patties, season with salt and pepper",
+      "Cook patties on grill for 4-5 minutes each side",
+      "Add cheese in last minute to melt",
+      "Toast buns until golden",
+      "Spread sauce on bottom bun",
+      "Layer lettuce, patty, tomato, onion",
+      "Top with bun and serve"
+    ]
+  },
+  {
+    "id": 4,
+    "title": "Vegetable Stir Fry",
+    "summary": "Fresh mixed vegetables stir-fried in a savory garlic ginger sauce.",
+    "image": "https://images.pexels.com/photos/1152237/pexels-photo-1152237.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+    "ingredients": [
+      "2 cups broccoli",
+      "1 bell pepper",
+      "1 carrot",
+      "1 onion",
+      "2 cloves garlic",
+      "1 tbsp ginger",
+      "3 tbsp soy sauce",
+      "1 tbsp sesame oil",
+      "1 tbsp cornstarch"
+    ],
+    "instructions": [
+      "Mix soy sauce, sesame oil, and cornstarch for sauce",
+      "Heat wok with oil",
+      "Stir-fry garlic and ginger until fragrant",
+      "Add vegetables, stir-fry for 3-4 minutes",
+      "Pour sauce and cook until thickened",
+      "Serve hot with rice"
+    ]
+  },
+  {
+    "id": 5,
+    "title": "Chocolate Chip Cookies",
+    "summary": "Soft and chewy cookies loaded with chocolate chips.",
+    "image": "https://images.pexels.com/photos/230325/pexels-photo-230325.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop",
+    "ingredients": [
+      "2 cups flour",
+      "1 cup butter",
+      "1 cup brown sugar",
+      "1/2 cup white sugar",
+      "2 eggs",
+      "2 cups chocolate chips",
+      "1 tsp vanilla",
+      "1 tsp baking soda"
+    ],
+    "instructions": [
+      "Cream butter and sugars until fluffy",
+      "Add eggs and vanilla, mix well",
+      "Combine flour and baking soda",
+      "Mix dry ingredients into wet",
+      "Fold in chocolate chips",
+      "Chill dough for 30 minutes",
+      "Bake at 375°F for 10-12 minutes",
+      "Cool on wire rack"
+    ]
+  }
+]
