@@ -7,20 +7,39 @@ const ProfileSettings = () => {
   return (
     <div className="profile-settings">
       <h3>Profile Settings</h3>
-      {userId && <p>Editing settings for user ID: {userId}</p>}
-      <form>
+      {userId && <p className="info-badge">Editing settings for user ID: {userId}</p>}
+      
+      <form className="settings-form">
         <div className="form-group">
-          <label>Email Notifications:</label>
-          <input type="checkbox" /> Enable
+          <label>
+            <input type="checkbox" /> Email Notifications
+          </label>
+          <small>Receive email updates about your account</small>
         </div>
+        
         <div className="form-group">
-          <label>Theme:</label>
-          <select>
-            <option>Light</option>
-            <option>Dark</option>
+          <label htmlFor="theme">Theme Preference:</label>
+          <select id="theme" defaultValue="light">
+            <option value="light">Light</option>
+            <option value="dark">Dark</option>
+            <option value="system">System Default</option>
           </select>
         </div>
-        <button type="submit">Save Settings</button>
+        
+        <div className="form-group">
+          <label htmlFor="language">Language:</label>
+          <select id="language" defaultValue="en">
+            <option value="en">English</option>
+            <option value="es">Spanish</option>
+            <option value="fr">French</option>
+            <option value="de">German</option>
+          </select>
+        </div>
+        
+        <div className="form-actions">
+          <button type="submit" className="save-btn">Save Settings</button>
+          <button type="button" className="cancel-btn">Cancel</button>
+        </div>
       </form>
     </div>
   );

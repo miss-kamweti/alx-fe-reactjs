@@ -11,7 +11,8 @@ const FormikForm = () => {
     },
     validationSchema: Yup.object({
       username: Yup.string()
-        .required('Username is required'),
+        .required('Username is required')
+        .min(3, 'Username must be at least 3 characters'),
       email: Yup.string()
         .email('Invalid email address')
         .required('Email is required'),
@@ -19,31 +20,17 @@ const FormikForm = () => {
         .min(6, 'Password must be at least 6 characters')
         .required('Password is required')
     }),
-    onSubmit: async (values, { setSubmitting, resetForm }) => {
-      try {
-        const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-          body: JSON.stringify(values)
-        });
-        
-        if (response.ok) {
-          alert('Registration successful!');
-          resetForm();
-        }
-      } catch (error) {
-        console.error('Error submitting form:', error);
-      }
+    onSubmit: (values, { setSubmitting, resetForm }) => {
+      console.log('Form submitted with Formik:', values);
+      alert('Registration successful with Formik!');
+      resetForm();
       setSubmitting(false);
     }
   });
 
   return (
     <div className="formik-form">
-      <h2>User Registration (Formik)</h2>
-      
+      <h2>Registration Form (Formik + Yup)</h2>
       <form onSubmit={formik.handleSubmit}>
         <div className="form-group">
           <label htmlFor="username">Username:</label>
@@ -94,7 +81,7 @@ const FormikForm = () => {
         </div>
 
         <button type="submit" disabled={formik.isSubmitting}>
-          {formik.isSubmitting ? 'Submitting...' : 'Register'}
+          {formik.isSubmitting ? 'Submitting...' : 'Register with Formik'}
         </button>
       </form>
     </div>

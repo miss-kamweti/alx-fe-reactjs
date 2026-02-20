@@ -7,11 +7,30 @@ const ProfileDetails = () => {
   return (
     <div className="profile-details">
       <h3>Profile Details</h3>
-      {userId && <p>Viewing details for user ID: {userId}</p>}
-      <p>Name: John Doe</p>
-      <p>Email: john.doe@example.com</p>
-      <p>Location: New York, USA</p>
-      <p>Member since: January 2024</p>
+      {userId && <p className="info-badge">Viewing details for user ID: {userId}</p>}
+      
+      <div className="details-grid">
+        <div className="detail-item">
+          <span className="detail-label">Name:</span>
+          <span className="detail-value">John Doe</span>
+        </div>
+        <div className="detail-item">
+          <span className="detail-label">Email:</span>
+          <span className="detail-value">john.doe@example.com</span>
+        </div>
+        <div className="detail-item">
+          <span className="detail-label">Location:</span>
+          <span className="detail-value">New York, USA</span>
+        </div>
+        <div className="detail-item">
+          <span className="detail-label">Member since:</span>
+          <span className="detail-value">January 2024</span>
+        </div>
+        <div className="detail-item">
+          <span className="detail-label">Role:</span>
+          <span className="detail-value">Administrator</span>
+        </div>
+      </div>
     </div>
   );
 };

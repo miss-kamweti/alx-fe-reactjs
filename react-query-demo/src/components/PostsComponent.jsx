@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 const fetchPosts = async () => {
@@ -10,27 +10,62 @@ const fetchPosts = async () => {
 };
 
 const PostsComponent = () => {
-  const { data: posts, isLoading, error, refetch, isFetching } = useQuery({
+  const [refetchCount, setRefetchCount] = useState(0);
+  
+  const { 
+    data: posts, 
+    isLoading, 
+    error, 
+    refetch, 
+    isFetching,
+    dataUpdatedAt 
+  } = useQuery({
     queryKey: ['posts'],
     queryFn: fetchPosts,
-    staleTime: 5000, // Data is considered fresh for 5 seconds
-    gcTime: 60000, // Cache persists for 60 seconds (formerly cacheTime)
+    staleTime: 30000, // Data stays fresh for 30 seconds
+    gcTime: 60000, // Cache persists for 60 seconds
   });
 
-  if (isLoading) return <div className="loading">Loading posts...</div>;
-  if (error) return <div className="error">Error: {error.message}</div>;
+  const handleRefetch = () => {
+    refetch();
+    setRefetchCount(prev => prev + 1);
+  };
+
+  if (isLoading) return (
+    <div className="loading">
+      <div className="spinner"></div>
+      <p>Loading posts...</p>
+    </div>
+  );
+  
+  if (error) return (
+    <div className="error">
+      <h3>Error Loading Posts</h3>
+      <p>{error.message}</p>
+      <button onClick={handleRefetch}>Try Again</button>
+    </div>
+  );
 
   return (
     <div className="posts-container">
       <div className="posts-header">
-        <h2>Posts from JSONPlaceholder</h2>
+        <div>
+          <h2>Posts from JSONPlaceholder</h2>
+          <p className="cache-info">
+            Last updated: {new Date(dataUpdatedAt).toLocaleTimeString()}
+          </p>
+        </div>
         <button 
-          onClick={() => refetch()} 
+          onClick={handleRefetch} 
           disabled={isFetching}
-          className="refetch-button"
+          className={`refetch-button ${isFetching ? 'fetching' : ''}`}
         >
           {isFetching ? 'Refetching...' : 'Refetch Data'}
         </button>
+      </div>
+      
+      <div className="refetch-count">
+        Manual refetches: {refetchCount}
       </div>
       
       <div className="posts-grid">
@@ -38,13 +73,31 @@ const PostsComponent = () => {
           <div key={post.id} className="post-card">
             <h3>{post.title}</h3>
             <p>{post.body}</p>
-            <small>Post ID: {post.id}</small>
+            <div className="post-footer">
+              <small>Post ID: {post.id}</small>
+              <small>User ID: {post.userId}</small>
+            </div>
           </div>
         ))}
       </div>
       
-      <div className="cache-info">
-        <p>Data is cached by React Query. Check the network tab to see fewer requests when navigating away and back!</p>
+      <div className="cache-demo">
+        <h3>React Query Caching Demo</h3>
+        <p>Navigate away and come back - data will load from cache!</p>
+        <div className="cache-stats">
+          <div className="stat">
+            <span className="stat-label">Total Posts:</span>
+            <span className="stat-value">{posts?.length}</span>
+          </div>
+          <div className="stat">
+            <span className="stat-label">Displayed:</span>
+            <span className="stat-value">10</span>
+          </div>
+          <div className="stat">
+            <span className="stat-label">Cache Status:</span>
+            <span className="stat-value active">Active</span>
+          </div>
+        </div>
       </div>
     </div>
   );

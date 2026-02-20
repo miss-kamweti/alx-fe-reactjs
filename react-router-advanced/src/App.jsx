@@ -17,28 +17,31 @@ function App() {
     <BrowserRouter>
       <div className="App">
         <nav className="main-nav">
-          <Link to="/">Home</Link>
-          <Link to="/profile">Profile</Link>
-          <Link to="/profile/user/123">Profile with ID</Link>
-          <Link to="/blog">Blog</Link>
-          {!isAuthenticated ? (
-            <Link to="/login">Login</Link>
-          ) : (
-            <button onClick={() => setIsAuthenticated(false)} className="logout-btn">
-              Logout
-            </button>
-          )}
+          <Link to="/" className="nav-brand">Router Demo</Link>
+          <div className="nav-links">
+            <Link to="/">Home</Link>
+            <Link to="/profile">Profile</Link>
+            <Link to="/profile/user/123">Profile (ID:123)</Link>
+            <Link to="/blog">Blog</Link>
+            {!isAuthenticated ? (
+              <Link to="/login">Login</Link>
+            ) : (
+              <button onClick={() => setIsAuthenticated(false)} className="logout-btn">
+                Logout
+              </button>
+            )}
+          </div>
         </nav>
 
-        <div className="auth-status">
-          Status: {isAuthenticated ? 'Authenticated' : 'Not Authenticated'}
+        <div className={`auth-status ${isAuthenticated ? 'authenticated' : 'unauthenticated'}`}>
+          Status: {isAuthenticated ? '✅ Authenticated' : '🔒 Not Authenticated'}
         </div>
 
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login setIsAuthenticated={setIsAuthenticated} />} />
           
-          {/* Dynamic Routes */}
+          {/* Protected Routes with nesting */}
           <Route path="/profile" element={
             <ProtectedRoute isAuthenticated={isAuthenticated}>
               <Profile />
@@ -49,6 +52,7 @@ function App() {
             <Route path="settings" element={<ProfileSettings />} />
           </Route>
           
+          {/* Dynamic route with userId parameter */}
           <Route path="/profile/user/:userId" element={
             <ProtectedRoute isAuthenticated={isAuthenticated}>
               <Profile />
@@ -59,11 +63,25 @@ function App() {
             <Route path="settings" element={<ProfileSettings />} />
           </Route>
 
-          {/* Blog Routes */}
+          {/* Blog routes with dynamic post IDs */}
           <Route path="/blog" element={<Blog />}>
-            <Route index element={<div>Select a post from the sidebar</div>} />
+            <Route index element={
+              <div className="blog-placeholder">
+                <h3>Welcome to the Blog</h3>
+                <p>Select a post from the sidebar to read</p>
+              </div>
+            } />
             <Route path=":id" element={<BlogPost />} />
           </Route>
+
+          {/* 404 route */}
+          <Route path="*" element={
+            <div className="not-found">
+              <h2>404 - Page Not Found</h2>
+              <p>The page you're looking for doesn't exist.</p>
+              <Link to="/" className="home-link">Go to Home</Link>
+            </div>
+          } />
         </Routes>
       </div>
     </BrowserRouter>

@@ -5,9 +5,11 @@ const TodoList = () => {
   const [todos, setTodos] = useState([
     { id: 1, text: 'Learn React', completed: false },
     { id: 2, text: 'Build a Todo App', completed: false },
-    { id: 3, text: 'Write tests', completed: true }
+    { id: 3, text: 'Write tests', completed: true },
+    { id: 4, text: 'Master JavaScript', completed: false }
   ]);
   const [inputValue, setInputValue] = useState('');
+  const [filter, setFilter] = useState('all'); // 'all', 'active', 'completed'
 
   const addTodo = (e) => {
     e.preventDefault();
@@ -32,6 +34,25 @@ const TodoList = () => {
     setTodos(todos.filter(todo => todo.id !== id));
   };
 
+  const getFilteredTodos = () => {
+    switch (filter) {
+      case 'active':
+        return todos.filter(todo => !todo.completed);
+      case 'completed':
+        return todos.filter(todo => todo.completed);
+      default:
+        return todos;
+    }
+  };
+
+  const clearCompleted = () => {
+    setTodos(todos.filter(todo => !todo.completed));
+  };
+
+  const filteredTodos = getFilteredTodos();
+  const activeCount = todos.filter(t => !t.completed).length;
+  const completedCount = todos.filter(t => t.completed).length;
+
   return (
     <div className="todo-container">
       <h2>Todo List</h2>
@@ -41,7 +62,7 @@ const TodoList = () => {
           type="text"
           value={inputValue}
           onChange={(e) => setInputValue(e.target.value)}
-          placeholder="Add a new todo..."
+          placeholder="What needs to be done?"
           className="todo-input"
           data-testid="todo-input"
         />
@@ -50,9 +71,33 @@ const TodoList = () => {
         </button>
       </form>
 
+      <div className="todo-filters">
+        <button 
+          className={`filter-btn ${filter === 'all' ? 'active' : ''}`}
+          onClick={() => setFilter('all')}
+          data-testid="filter-all"
+        >
+          All ({todos.length})
+        </button>
+        <button 
+          className={`filter-btn ${filter === 'active' ? 'active' : ''}`}
+          onClick={() => setFilter('active')}
+          data-testid="filter-active"
+        >
+          Active ({activeCount})
+        </button>
+        <button 
+          className={`filter-btn ${filter === 'completed' ? 'active' : ''}`}
+          onClick={() => setFilter('completed')}
+          data-testid="filter-completed"
+        >
+          Completed ({completedCount})
+        </button>
+      </div>
+
       <ul className="todo-list" data-testid="todo-list">
-        {todos.map(todo => (
-          <li key={todo.id} className="todo-item">
+        {filteredTodos.map(todo => (
+          <li key={todo.id} className="todo-item" data-testid={`todo-item-${todo.id}`}>
             <input
               type="checkbox"
               checked={todo.completed}
@@ -60,7 +105,7 @@ const TodoList = () => {
               data-testid={`todo-checkbox-${todo.id}`}
             />
             <span 
-              className={todo.completed ? 'completed' : ''}
+              className={`todo-text ${todo.completed ? 'completed' : ''}`}
               onClick={() => toggleTodo(todo.id)}
               data-testid={`todo-text-${todo.id}`}
             >
@@ -77,11 +122,24 @@ const TodoList = () => {
         ))}
       </ul>
 
-      <div className="todo-stats">
-        <span>Total: {todos.length}</span>
-        <span>Completed: {todos.filter(t => t.completed).length}</span>
-        <span>Pending: {todos.filter(t => !t.completed).length}</span>
-      </div>
+      {todos.length > 0 && (
+        <div className="todo-footer">
+          <div className="todo-stats">
+            <span data-testid="total-count">Total: {todos.length}</span>
+            <span data-testid="active-count">Active: {activeCount}</span>
+            <span data-testid="completed-count">Completed: {completedCount}</span>
+          </div>
+          {completedCount > 0 && (
+            <button 
+              onClick={clearCompleted} 
+              className="clear-completed"
+              data-testid="clear-completed"
+            >
+              Clear Completed
+            </button>
+          )}
+        </div>
+      )}
     </div>
   );
 };
