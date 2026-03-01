@@ -4,16 +4,11 @@ import { Link } from 'react-router-dom';
 const Home = () => {
   return (
     <div className="home">
-      <h1>Welcome to the Advanced Routing Demo</h1>
-      <p>This application demonstrates various routing techniques:</p>
-      <ul>
-        <li>Nested Routes</li>
-        <li>Dynamic Routes</li>
-        <li>Protected Routes</li>
-      </ul>
-      <div className="links">
-        <Link to="/profile" className="button">Go to Profile</Link>
-        <Link to="/blog" className="button">View Blog</Link>
+      <h1>Welcome to React Router Advanced Demo</h1>
+      <div className="home-links">
+        <Link to="/profile" className="home-link">Go to Profile</Link>
+        <Link to="/profile/user/123" className="home-link">Go to Profile (User 123)</Link>
+        <Link to="/blog" className="home-link">Go to Blog</Link>
       </div>
     </div>
   );

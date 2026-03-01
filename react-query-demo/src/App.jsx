@@ -4,11 +4,14 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools';
 import PostsComponent from './components/PostsComponent';
 import './App.css';
 
+// Create a client
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
-      staleTime: 30000,
+      staleTime: 5000,
       gcTime: 60000,
+      retry: 1,
+      refetchOnWindowFocus: false,
     },
   },
 });

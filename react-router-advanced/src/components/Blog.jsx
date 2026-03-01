@@ -3,14 +3,14 @@ import { Link, Outlet } from 'react-router-dom';
 
 const Blog = () => {
   const posts = [
-    { id: 1, title: 'Getting Started with React Router' },
-    { id: 2, title: 'Advanced Routing Patterns' },
-    { id: 3, title: 'Protected Routes in React' },
+    { id: 1, title: 'Getting Started with React' },
+    { id: 2, title: 'Understanding React Router' },
+    { id: 3, title: 'Advanced React Patterns' },
   ];
 
   return (
     <div className="blog">
-      <h2>Blog Posts</h2>
+      <h2>Blog</h2>
       <div className="blog-layout">
         <div className="blog-sidebar">
           <h3>Posts</h3>

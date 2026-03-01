@@ -1,23 +1,26 @@
 import React from 'react';
-import { Link, Outlet, useParams } from 'react-router-dom';
+import { Routes, Route, Link, useParams } from 'react-router-dom';
+import ProfileDetails from './ProfileDetails';
+import ProfileSettings from './ProfileSettings';
 
 const Profile = () => {
   const { userId } = useParams();
 
   return (
     <div className="profile">
-      <h2>User Profile {userId && `- User #${userId}`}</h2>
+      <h2>User Profile {userId && `- User ${userId}`}</h2>
       
       <nav className="profile-nav">
-        <Link to="details" className="nav-link">Profile Details</Link>
-        <Link to="settings" className="nav-link">Profile Settings</Link>
-        {userId && (
-          <Link to={`/profile`} className="nav-link">Default Profile</Link>
-        )}
+        <Link to={`/profile${userId ? `/user/${userId}` : ''}/details`}>Profile Details</Link>
+        <Link to={`/profile${userId ? `/user/${userId}` : ''}/settings`}>Profile Settings</Link>
       </nav>
-      
+
       <div className="profile-content">
-        <Outlet />
+        <Routes>
+          <Route path="details" element={<ProfileDetails />} />
+          <Route path="settings" element={<ProfileSettings />} />
+          <Route index element={<ProfileDetails />} />
+        </Routes>
       </div>
     </div>
   );

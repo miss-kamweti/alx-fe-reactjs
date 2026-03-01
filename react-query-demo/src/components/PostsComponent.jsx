@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 
 const fetchPosts = async () => {
@@ -10,41 +10,44 @@ const fetchPosts = async () => {
 };
 
 const PostsComponent = () => {
-  const [refetchCount, setRefetchCount] = useState(0);
-  
   const { 
     data: posts, 
     isLoading, 
-    error, 
+    isError,           // Using isError instead of error
+    error,             // Keep error for error message
     refetch, 
     isFetching,
-    dataUpdatedAt 
+    dataUpdatedAt,
+    isStale            // For caching demonstration
   } = useQuery({
     queryKey: ['posts'],
     queryFn: fetchPosts,
-    staleTime: 30000, // Data stays fresh for 30 seconds
-    gcTime: 60000, // Cache persists for 60 seconds
+    staleTime: 5000,   // Data considered fresh for 5 seconds
+    gcTime: 60000,     // Cache persists for 60 seconds
   });
 
-  const handleRefetch = () => {
-    refetch();
-    setRefetchCount(prev => prev + 1);
-  };
+  // Handle loading state
+  if (isLoading) {
+    return (
+      <div className="loading-container">
+        <div className="spinner"></div>
+        <p>Loading posts...</p>
+      </div>
+    );
+  }
 
-  if (isLoading) return (
-    <div className="loading">
-      <div className="spinner"></div>
-      <p>Loading posts...</p>
-    </div>
-  );
-  
-  if (error) return (
-    <div className="error">
-      <h3>Error Loading Posts</h3>
-      <p>{error.message}</p>
-      <button onClick={handleRefetch}>Try Again</button>
-    </div>
-  );
+  // Handle error state - using isError as required
+  if (isError) {
+    return (
+      <div className="error-container">
+        <h3>Error Loading Posts</h3>
+        <p>{error?.message || 'An error occurred while fetching posts'}</p>
+        <button onClick={() => refetch()} className="retry-button">
+          Try Again
+        </button>
+      </div>
+    );
+  }
 
   return (
     <div className="posts-container">
@@ -53,10 +56,11 @@ const PostsComponent = () => {
           <h2>Posts from JSONPlaceholder</h2>
           <p className="cache-info">
             Last updated: {new Date(dataUpdatedAt).toLocaleTimeString()}
+            {isStale ? ' (Data is stale)' : ' (Data is fresh)'}
           </p>
         </div>
         <button 
-          onClick={handleRefetch} 
+          onClick={() => refetch()} 
           disabled={isFetching}
           className={`refetch-button ${isFetching ? 'fetching' : ''}`}
         >
@@ -64,8 +68,16 @@ const PostsComponent = () => {
         </button>
       </div>
       
-      <div className="refetch-count">
-        Manual refetches: {refetchCount}
+      {/* Caching demonstration message */}
+      <div className="caching-demo">
+        <h3>React Query Caching Demo</h3>
+        <p>Navigate away and come back - data will load from cache!</p>
+        <div className="cache-status">
+          <span className="cache-badge active">Cache Active</span>
+          <span className="cache-info-text">
+            {posts?.length} posts cached • Stale time: 5s • Cache time: 60s
+          </span>
+        </div>
       </div>
       
       <div className="posts-grid">
@@ -81,23 +93,16 @@ const PostsComponent = () => {
         ))}
       </div>
       
-      <div className="cache-demo">
-        <h3>React Query Caching Demo</h3>
-        <p>Navigate away and come back - data will load from cache!</p>
-        <div className="cache-stats">
-          <div className="stat">
-            <span className="stat-label">Total Posts:</span>
-            <span className="stat-value">{posts?.length}</span>
-          </div>
-          <div className="stat">
-            <span className="stat-label">Displayed:</span>
-            <span className="stat-value">10</span>
-          </div>
-          <div className="stat">
-            <span className="stat-label">Cache Status:</span>
-            <span className="stat-value active">Active</span>
-          </div>
-        </div>
+      <div className="refetch-info">
+        <button 
+          onClick={() => refetch()} 
+          className="refetch-mini-button"
+        >
+          Manual Refetch
+        </button>
+        <span className="fetching-status">
+          {isFetching ? 'Fetching...' : 'Idle'}
+        </span>
       </div>
     </div>
   );

@@ -3,18 +3,20 @@ import { useFormik } from 'formik';
 import * as Yup from 'yup';
 
 const FormikForm = () => {
+  // Formik integration with validation schema
   const formik = useFormik({
     initialValues: {
       username: '',
       email: '',
       password: ''
     },
+    // Yup validation schema
     validationSchema: Yup.object({
       username: Yup.string()
         .required('Username is required')
         .min(3, 'Username must be at least 3 characters'),
       email: Yup.string()
-        .email('Invalid email address')
+        .email('Invalid email format')
         .required('Email is required'),
       password: Yup.string()
         .min(6, 'Password must be at least 6 characters')

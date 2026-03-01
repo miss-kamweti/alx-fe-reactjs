@@ -1,12 +1,4 @@
 .App {
-  min-height: 100vh;
-  background-color: #f0f2f5;
-  padding: 40px 20px;
-}
-
-h1 {
   text-align: center;
-  color: #333;
-  margin-bottom: 40px;
-  font-size: 2.5em;
+  padding: 20px;
 }
